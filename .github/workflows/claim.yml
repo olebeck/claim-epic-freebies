@@ -32,5 +32,9 @@ jobs:
             - name: Hotfix for \#4 # https://github.com/xuac/claim-epic-freebies/issues/4
               run: mkdir .egstore
 
+            - run: sudo apt-get install xvfb
+            - run: export DISPLAY=':99.0'
+            - run: Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+
             - name: Get Epic Freebies
               run: yarn start ${{ secrets.USERNAME }} ${{ secrets.PASSWORD }} 0 ${{ secrets.SECRETKEY }}
